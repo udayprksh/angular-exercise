@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { seatAvailablityValidator } from 'src/app/common/customvalidator.validator';
 import { Subscription } from 'rxjs';
+import { ApiService } from 'src/app/common/api.service';
 
 @Component({
   selector: 'app-create-event',
@@ -17,11 +18,12 @@ export class CreateEventComponent implements OnInit {
   attendeeArray: FormArray;
   noOfBookedSeat: number = 1;
   displayNoOfSeat: number = 6;
+  message:string;
 
   private sub: Subscription;
   protected eventDetails: any;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private api: ApiService,private route: ActivatedRoute, private fb: FormBuilder) {
 
     this.contactForm = fb.group({
       firstName: '',
@@ -50,7 +52,7 @@ export class CreateEventComponent implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       phone: ["", Validators.pattern('[0-9]{10}')],
       noofseat: ["", [Validators.required, seatAvailablityValidator(this.eventDetails)]],
-      attendeeArray: this.fb.array([this.createOtherAttendeeForm()])
+      attendeeArray: this.fb.array([])
     });
   }
 
@@ -80,12 +82,30 @@ export class CreateEventComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
+    console.log(this.form.invalid)
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
+
+    this.submitted = true;
+
+    //Console the form data
     console.log(this.form.value);
+    this.message = "Tickets Booked"
+    // Post the data to the server - As of now it will return error becasue of server url
+    // not exist
+    this.api.bookEvent(this.form.value).subscribe(
+      (response) => { 
+        // TO DO 
+        console.log(response);
+      },
+      (error) => {
+        // TO DO
+        console.log(error);
+      }
+    );
+    
   }
 
   ngOnDestroy() {
