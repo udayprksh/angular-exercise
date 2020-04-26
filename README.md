@@ -4,7 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Step 1. Git clone `git clone https://github.com/udayprksh/angular-exercise.git`
+
+Step 2. Go to inside the direcory `cd angular-exercise`
+
+Step 3. Run `npm install`
+
+Step 4. Run `npm start` to start the dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

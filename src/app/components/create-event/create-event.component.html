@@ -1,3 +1,6 @@
+<div class="example-header" fxLayout="row" fxlayout.lt-md="column" fxLayoutAlign="center center">
+	<h3>{{message}}</h3>
+</div>
 <form class="example-container" fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()">
 	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
 		<mat-form-field fxFlex>
@@ -64,7 +67,7 @@
 	</div>
 
 	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
-		<button mat-button type="submit" color="primary" class="btn_green">Submit</button>
-		<button mat-button type="button" [routerLink]="['/event']" class="btn_flat">Cancel</button>
+		<button mat-button type="submit" color="primary" class="btn_green" [disabled]="submitted">Submit</button>
+		<button mat-button type="button" [routerLink]="['/event']" class="btn_flat" [disabled]="submitted">Cancel</button>
 	</div>
 </form>
