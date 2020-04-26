@@ -1,0 +1,44 @@
+[
+    {
+      "name": "Event 1",
+      "image": "https://source.unsplash.com/1600x900/?product",
+      "noOfseat": 10,
+      "eventdate": "20-05-2020"
+    },
+    {
+      "name": "Event 2",
+      "image": "https://source.unsplash.com/1600x900/?product",
+      "noOfseat": 2,
+      "eventdate": "25-05-2020"
+    },
+    {
+        "name": "Event 3",
+        "image": "https://source.unsplash.com/1600x900/?product",
+        "noOfseat": 7,
+        "eventdate": "30-05-2020"
+    },
+    {
+        "name": "Event 4",
+        "image": "https://source.unsplash.com/1600x900/?product",
+        "noOfseat": 2,
+        "eventdate": "10-06-2020"
+    },
+    {
+        "name": "Event 5",
+        "image": "https://source.unsplash.com/1600x900/?product",
+        "noOfseat": 0,
+        "eventdate": "12-06-2020"
+    },
+    {
+        "name": "Event 6",
+        "image": "https://source.unsplash.com/1600x900/?product",
+        "noOfseat": 3,
+        "eventdate": "20-65-2020"
+    },
+    {
+        "name": "Event 7",
+        "image": "https://source.unsplash.com/1600x900/?product",
+        "noOfseat": 0,
+        "eventdate": "22-07-2020"
+    }
+]

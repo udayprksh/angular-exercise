@@ -1,0 +1,70 @@
+<form class="example-container" fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()">
+	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+		<mat-form-field fxFlex>
+			<input matInput placeholder="Name" formControlName="username">
+			<mat-error *ngIf="f.username.errors" class="invalid-feedback">
+				<span *ngIf="f.username.errors.required">Please enter your name</span>
+				<span *ngIf="f.username.errors.pattern">Only letters and spaces are
+					allowed</span>
+
+			</mat-error>
+		</mat-form-field>
+	</div>
+
+	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+		<mat-form-field fxFlex>
+			<input matInput placeholder="Email" formControlName="email">
+			<mat-error *ngIf="f.email.errors" class="invalid-feedback">
+				<span *ngIf="f.email.errors.required">Please enter your email</span>
+				<span *ngIf="f.email.errors.email">Invalid email</span>
+			</mat-error>
+		</mat-form-field>
+	</div>
+
+	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+		<mat-form-field fxFlex>
+			<input matInput placeholder="Phone" formControlName="phone">
+			<mat-error *ngIf="f.phone.errors" class="invalid-feedback">
+				<span *ngIf="f.phone.errors.pattern">Please enter 10 digit phone
+					number</span>
+			</mat-error>
+		</mat-form-field>
+	</div>
+
+	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+		<mat-form-field fxFlex>
+			<mat-select name="noofseat" placeholder="No of Seats" formControlName="noofseat">
+				<mat-option *ngFor="let seat of seatList" [value]="seat"
+					(onSelectionChange)="createAttendee($event,seat)">
+					{{seat}}
+				</mat-option>
+			</mat-select>
+			<mat-error *ngIf="f.noofseat.errors" class="invalid-feedback">
+				<span *ngIf="f.noofseat.errors.required">Please enter number of seats</span>
+				<span *ngIf="f.noofseat.errors.seatAvailablity">Number of seats selected is
+					more than available seats</span>
+			</mat-error>
+		</mat-form-field>
+	</div>
+
+	<div *ngIf="noOfBookedSeat > 1">
+		<div formArrayName="attendeeArray" *ngFor="let item of form.get('attendeeArray')['controls']; let i = index;">
+			<div [formGroupName]="i" class="input-row" fxLayout="row" fxLayout.lt-md="column">
+				<mat-form-field fxFlex>
+					<input matInput formControlName="otherattendee" placeholder="Name of Attendee  {{i+2}}">
+					<mat-error *ngIf="f.attendeeArray.controls[i].controls.otherattendee.errors"
+						class="invalid-feedback">
+						<span *ngIf="f.attendeeArray.controls[i].controls.otherattendee.errors.required">Please enter
+							the name of
+							Attendee {{i+2}}</span>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+	</div>
+
+	<div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+		<button mat-button type="submit" color="primary" class="btn_green">Submit</button>
+		<button mat-button type="button" [routerLink]="['/event']" class="btn_flat">Cancel</button>
+	</div>
+</form>

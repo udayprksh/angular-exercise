@@ -1,0 +1,50 @@
+<div class="example-header" fxLayout="row" fxlayout.lt-md="column">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="SEARCH EVENTS">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+   
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row" data-label="name"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Image Column -->
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
+      <mat-cell *matCellDef="let row" data-label="image"> <img height="50px"  width="50px" [src]="row.image" /> </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="eventdate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+      <mat-cell *matCellDef="let row" data-label="eventdate"> {{row.eventdate}} </mat-cell>
+    </ng-container>
+
+     <!-- No of Seats Column -->
+     <ng-container matColumnDef="noOfseat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> No Of Seats </mat-header-cell>
+      <mat-cell *matCellDef="let row" data-label="noOfseat"> {{row.noOfseat}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+          <a *ngIf="row.noOfseat > 0; else soldOut" [routerLink]="['/create', {totalSeat : row.noOfseat}]" matTooltip="Book Event">
+              <button mat-button color="primary"> Book Now</button>
+          </a>
+          <ng-template #soldOut><button mat-button color="warn">Sold Out</button></ng-template>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+</div>
